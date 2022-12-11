@@ -9,6 +9,10 @@ const pressure = document.querySelector("#result-pressure");
 const minTemp = document.querySelector("#result-min-temp");
 const maxTemp = document.querySelector("#result-max-temp");
 const convertUnitsBtn = document.querySelector("#convert-units-btn");
+const content = document.querySelector(".content");
+const results = document.querySelector(".result-screen");
+const returnBtn = document.querySelector("#return-btn");
+
 
 
 searchBtn.addEventListener("click", () => {
@@ -18,9 +22,7 @@ searchBtn.addEventListener("click", () => {
     if (city !== "") {
         getWeatherData(city);
         setTimeout(function () {
-            let content = document.querySelector(".content");
             content.style.display = "none";
-            let results = document.querySelector(".result-screen");
             results.style.display = "block";
         }, 1000)
 
@@ -52,6 +54,13 @@ convertUnitsBtn.addEventListener("click", () => {
         maxTemp.textContent = newMaxTemp;
     }
 
+})
+
+returnBtn.addEventListener("click", () => {
+    content.style.display = "block";
+    results.style.display = "none";
+    let emptyField = document.getElementById("location");
+    emptyField.value = "";
 })
 
 
