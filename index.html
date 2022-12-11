@@ -13,10 +13,54 @@
     <div class="content">
         <h1 class="logo">checkWeatherApp</h1>
         <form id="weather-form">
-            <input type="text" placeholder="Your city here">
-            <a href="./results.html"><img id="search-icon" src="./img/magnify.svg" alt="magnifying glass"></a>
+            <input type="text" id="location" placeholder="Your city here">
+            <img id="search-icon" src="./img/magnify.svg" alt="magnifying glass">
         </form>
 
+    </div>
+
+    <div class="result-screen">
+        <div class="result-card">
+            <div class="btn-container">
+                <button id="convert-units-btn">F
+                </button>
+                <button id="return-btn">
+                    <img src="./img/arrow-left.svg" alt="return arrow">
+                </button>
+            </div>
+            <div class="result-summary">
+                <div class="summary-item one">
+                    <div id="result-temp">100C</div>
+                    <div id="result-place">LONDON</div>
+                </div>
+                <div class="summary-item">
+                    <div id="result-weather">Clouds</div>
+                    <div id="result-weather-desc">RAINING</div>
+                </div>
+                <div id="result-details">
+                    <div class="details-item">
+                        <h2>Feels like</h2>
+                        <p id="result-feeling">aaa</p>
+                    </div>
+                    <div class="details-item">
+                        <h2>Humidity</h2>
+                        <p id="result-humidty">bbb</p>
+                    </div>
+                    <div class="details-item">
+                        <h2>Pressure</h2>
+                        <p id="result-pressure">ccc</p>
+                    </div>
+                    <div class="details-item">
+                        <h2>Min temp</h2>
+                        <p id="result-min-temp">ddd</p>
+                    </div>
+                    <div class="details-item">
+                        <h2>Max temp</h2>
+                        <p id="result-max-temp">eee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="footer">

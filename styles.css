@@ -170,8 +170,8 @@ a {
 }
 
 #search-icon {
-    height: 100%;
-    width: 100%;
+    height: 8%;
+    width: 8%;
     background-color: #45b29d;
     border-radius: 25px;
     padding: 0.5rem;
@@ -272,4 +272,9 @@ a {
 
 button {
     cursor: pointer;
+}
+
+.result-screen {
+    display: none;
+    transform: translateY(-100px);
 }
