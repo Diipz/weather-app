@@ -278,3 +278,11 @@ button {
     display: none;
     transform: translateY(-100px);
 }
+
+#convert-units-btn::after {
+    content: "C";
+}
+
+#convert-units-btn.celsius::after {
+    content: "F";
+}

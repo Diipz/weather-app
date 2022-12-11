@@ -1,11 +1,19 @@
-let searchBtn = document.querySelector("#search-icon");
-
+const searchBtn = document.querySelector("#search-icon");
+const temp = document.querySelector("#result-temp");
+const place = document.querySelector("#result-place");
+const weather = document.querySelector("#result-weather");
+const description = document.querySelector("#result-weather-desc");
+const feelsLike = document.querySelector("#result-feeling");
+const humidity = document.querySelector("#result-humidty");
+const pressure = document.querySelector("#result-pressure");
+const minTemp = document.querySelector("#result-min-temp");
+const maxTemp = document.querySelector("#result-max-temp");
+const convertUnitsBtn = document.querySelector("#convert-units-btn");
 
 
 searchBtn.addEventListener("click", () => {
 
     let city = document.getElementById("location").value;
-
 
     if (city !== "") {
         getWeatherData(city);
@@ -14,13 +22,37 @@ searchBtn.addEventListener("click", () => {
             content.style.display = "none";
             let results = document.querySelector(".result-screen");
             results.style.display = "block";
-        }, 2000)
+        }, 1000)
 
     } else {
         return alert("select a city");
     }
 })
 
+convertUnitsBtn.addEventListener("click", () => {
+    convertUnitsBtn.classList.toggle("celsius");
+
+    if (convertUnitsBtn.classList.contains("celsius")) {
+        let newTemp = convertCelsiusToFahrenheit(temp.textContent);
+        temp.textContent = newTemp;
+        let newFeelTemp = convertCelsiusToFahrenheit(feelsLike.textContent);
+        feelsLike.textContent = newFeelTemp;
+        let newMinTemp = convertCelsiusToFahrenheit(minTemp.textContent);
+        minTemp.textContent = newMinTemp;
+        let newMaxTemp = convertCelsiusToFahrenheit(maxTemp.textContent);
+        maxTemp.textContent = newMaxTemp;
+    } else {
+        let newTemp = convertFahrenheitToCelsius(temp.textContent);
+        temp.textContent = newTemp;
+        let newFeelTemp = convertFahrenheitToCelsius(feelsLike.textContent);
+        feelsLike.textContent = newFeelTemp;
+        let newMinTemp = convertFahrenheitToCelsius(minTemp.textContent);
+        minTemp.textContent = newMinTemp;
+        let newMaxTemp = convertFahrenheitToCelsius(maxTemp.textContent);
+        maxTemp.textContent = newMaxTemp;
+    }
+
+})
 
 
 //async function to obtain weather data of city
@@ -32,32 +64,32 @@ async function getWeatherData(city) {
         return;
 
     } catch (error) {
-        alert(error);
+        alert("Unable find location");
     }
 }
 
 //display weather card using weather data
 function createWeatherCard(weatherData) {
-    let temp = document.querySelector("#result-temp");
-    let place = document.querySelector("#result-place");
-    let weather = document.querySelector("#result-weather");
-    let description = document.querySelector("#result-weather-desc");
-    let feelsLike = document.querySelector("#result-feeling");
-    let humidity = document.querySelector("#result-humidty");
-    let pressure = document.querySelector("#result-pressure");
-    let minTemp = document.querySelector("#result-min-temp");
-    let maxTemp = document.querySelector("#result-max-temp");
 
-    temp.textContent = Math.round(weatherData.main.temp * 10) / 10 + "\u00B0";
+    temp.textContent = Math.round(weatherData.main.temp * 10) / 10;
     place.textContent = weatherData.name;
     weather.textContent = weatherData.weather[0].main;
     description.textContent = weatherData.weather[0].description;
-    feelsLike.textContent = Math.round(weatherData.main.feels_like * 10) / 10 + "\u00B0";
+    feelsLike.textContent = Math.round(weatherData.main.feels_like * 10) / 10;
     humidity.textContent = weatherData.main.humidity + "%";
     pressure.textContent = weatherData.main.pressure + "mb";
-    minTemp.textContent = Math.round(weatherData.main.temp_min * 10) / 10 + "\u00B0";
-    maxTemp.textContent = Math.round(weatherData.main.temp_max * 10 / 10) + "\u00B0";
+    minTemp.textContent = Math.round(weatherData.main.temp_min * 10) / 10;
+    maxTemp.textContent = Math.round(weatherData.main.temp_max * 10) / 10;
 }
 
+function convertCelsiusToFahrenheit(value) {
+    return Math.round((Number(value) * 9 / 5 + 32) * 10) / 10;
+
+}
+
+function convertFahrenheitToCelsius(value) {
+    return Math.round((Number(value) - 32) * (5 / 9) * 10) / 10;
+
+}
 
 
