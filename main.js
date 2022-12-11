@@ -1,29 +1,29 @@
 let searchBtn = document.querySelector("#search-icon");
 
 
-if (searchBtn !== null) {
-    searchBtn.addEventListener("click", () => {
 
-        let city = document.getElementById("location").value;
+searchBtn.addEventListener("click", () => {
 
-
-        if (city !== "") {
-            getWeatherData(city);
-            setTimeout(function () {
-                let content = document.querySelector(".content");
-                content.style.display = "none";
-                let results = document.querySelector(".result-screen");
-                results.style.display = "block";
-            }, 2000)
-
-        } else {
-            return alert("select a city");
-        }
-    })
-}
+    let city = document.getElementById("location").value;
 
 
+    if (city !== "") {
+        getWeatherData(city);
+        setTimeout(function () {
+            let content = document.querySelector(".content");
+            content.style.display = "none";
+            let results = document.querySelector(".result-screen");
+            results.style.display = "block";
+        }, 2000)
 
+    } else {
+        return alert("select a city");
+    }
+})
+
+
+
+//async function to obtain weather data of city
 async function getWeatherData(city) {
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c1549ca689f583a53da882e62424c483&units=metric`, { mode: "cors" });
@@ -36,6 +36,7 @@ async function getWeatherData(city) {
     }
 }
 
+//display weather card using weather data
 function createWeatherCard(weatherData) {
     let temp = document.querySelector("#result-temp");
     let place = document.querySelector("#result-place");
